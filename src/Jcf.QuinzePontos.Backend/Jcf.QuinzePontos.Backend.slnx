@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Jcf.QuinzePontos.Domain/Jcf.QuinzePontos.Domain.csproj" />
+  <Project Path="Jcf.QuinzePontos.GetResultsWorker/Jcf.QuinzePontos.GetResultsWorker.csproj" />
+  <Project Path="Jcf.QuinzePontos.infrastructure/Jcf.QuinzePontos.infrastructure.csproj" />
+</Solution>
