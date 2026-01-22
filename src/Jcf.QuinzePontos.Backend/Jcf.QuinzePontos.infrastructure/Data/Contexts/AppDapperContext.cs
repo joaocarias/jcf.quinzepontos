@@ -2,7 +2,7 @@
 using Npgsql;
 using System.Data;
 
-namespace Jcf.QuinzePontos.infrastructure.Data.Contexts
+namespace Jcf.QuinzePontos.Infrastructure.Data.Contexts
 {
     public class AppDapperContext : IDisposable
     {

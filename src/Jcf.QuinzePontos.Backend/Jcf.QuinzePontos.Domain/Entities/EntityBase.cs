@@ -8,7 +8,10 @@ namespace Jcf.QuinzePontos.Domain.Entities
         [Required]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; private set; }
+        public long Id { get; private set; }
+
+        [Required]
+        public Guid Uid { get; private set; } = Guid.NewGuid();
 
         [Required]
         public bool IsActive { get; private set; } = true;

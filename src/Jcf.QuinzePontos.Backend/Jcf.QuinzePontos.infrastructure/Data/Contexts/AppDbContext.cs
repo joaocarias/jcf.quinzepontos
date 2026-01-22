@@ -1,7 +1,7 @@
 ﻿using Jcf.QuinzePontos.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Jcf.QuinzePontos.infrastructure.Data.Contexts
+namespace Jcf.QuinzePontos.Infrastructure.Data.Contexts
 {
     public class AppDbContext : DbContext
     {
