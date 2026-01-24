@@ -1,7 +1,8 @@
 ﻿using Jcf.QuinzePontos.Domain.Interfaces.Repositories;
 using Jcf.QuinzePontos.Infrastructure.Data.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Jcf.QuinzePontos.Api.Configurations
+namespace Jcf.QuinzePontos.Infrastructure.DependencyInjection
 {
     public static class RepositoriesConfigurations
     {

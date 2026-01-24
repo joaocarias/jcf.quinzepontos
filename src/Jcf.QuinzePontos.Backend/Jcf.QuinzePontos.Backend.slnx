@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Jcf.QuinzePontos.Api/Jcf.QuinzePontos.Api.csproj" Id="f7b7882f-6876-49f5-bc52-867d90fb764b" />
+  <Project Path="Jcf.QuinzePontos.Application/Jcf.QuinzePontos.Application.csproj" Id="b5f39602-21dd-48e0-8d5a-469a726847ed" />
   <Project Path="Jcf.QuinzePontos.Domain/Jcf.QuinzePontos.Domain.csproj" />
   <Project Path="Jcf.QuinzePontos.GetResultsWorker/Jcf.QuinzePontos.GetResultsWorker.csproj" />
   <Project Path="Jcf.QuinzePontos.infrastructure/Jcf.QuinzePontos.infrastructure.csproj" DisplayName="Jcf.QuinzePontos.Infrastructure" />

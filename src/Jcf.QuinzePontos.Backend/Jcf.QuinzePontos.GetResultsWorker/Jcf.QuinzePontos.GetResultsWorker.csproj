@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Jcf.QuinzePontos.Application\Jcf.QuinzePontos.Application.csproj" />
+    <ProjectReference Include="..\Jcf.QuinzePontos.infrastructure\Jcf.QuinzePontos.Infrastructure.csproj" />
   </ItemGroup>
 </Project>
