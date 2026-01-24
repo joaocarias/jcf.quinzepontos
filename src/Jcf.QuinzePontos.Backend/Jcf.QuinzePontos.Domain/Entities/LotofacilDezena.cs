@@ -4,7 +4,7 @@ namespace Jcf.QuinzePontos.Domain.Entities
 {
     public class LotofacilDezena : EntityBase
     {
-        public Guid ConcursoId { get; private set; }
+        public long ConcursoId { get; private set; }
 
         [ForeignKey(nameof(ConcursoId))]
         public LotofacilConcurso Concurso { get; private set; } = null!;
