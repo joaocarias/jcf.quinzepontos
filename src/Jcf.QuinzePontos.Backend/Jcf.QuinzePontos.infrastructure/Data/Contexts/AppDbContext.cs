@@ -15,10 +15,12 @@ namespace Jcf.QuinzePontos.Infrastructure.Data.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("loto_facil");
+
             modelBuilder.Entity<LotofacilConcurso>()
                 .HasIndex(x => x.Numero)
                 .IsUnique();
-
+            
             base.OnModelCreating(modelBuilder);
         }
     }
