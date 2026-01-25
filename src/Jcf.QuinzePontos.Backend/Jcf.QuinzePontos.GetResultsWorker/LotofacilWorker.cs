@@ -28,7 +28,7 @@ namespace Jcf.QuinzePontos.GetResultsWorker
                     var service = scope.ServiceProvider
                         .GetRequiredService<ILotofacilConcursoService>();
 
-                    await service.UpdateAsync(stoppingToken);
+                    await service.GetConcursoAsync(stoppingToken);
                 }
                 catch (Exception ex)
                 {

@@ -2,6 +2,6 @@
 {
     public interface ILotofacilConcursoService
     {
-        Task UpdateAsync(CancellationToken cancellationToken);
+        Task GetConcursoAsync(CancellationToken cancellationToken);
     }
 }

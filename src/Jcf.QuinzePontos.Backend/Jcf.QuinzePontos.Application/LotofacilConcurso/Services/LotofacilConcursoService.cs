@@ -1,4 +1,5 @@
-﻿using Jcf.QuinzePontos.Application.LotofacilConcurso.Interfaces.Services;
+﻿using Jcf.QuinzePontos.Application.LotofacilConcurso.Clients;
+using Jcf.QuinzePontos.Application.LotofacilConcurso.Interfaces.Services;
 using Jcf.QuinzePontos.Domain.Interfaces.Repositories;
 
 namespace Jcf.QuinzePontos.Application.LotofacilConcurso.Services
@@ -6,16 +7,21 @@ namespace Jcf.QuinzePontos.Application.LotofacilConcurso.Services
     public class LotofacilConcursoService : ILotofacilConcursoService
     {
         private readonly ILotofacilConcursoRepository _repository;
+        private readonly ILotofacilConcursoClient _LotofacilConcursoClient;
 
         public LotofacilConcursoService(
-            ILotofacilConcursoRepository repository)
+            ILotofacilConcursoRepository repository, ILotofacilConcursoClient lotofacilConcursoClient)
         {
             _repository = repository;
+            _LotofacilConcursoClient = lotofacilConcursoClient;
         }
 
-        public async Task UpdateAsync(
+        public async Task GetConcursoAsync(
             CancellationToken cancellationToken)
         {
+
+            var l = await _LotofacilConcursoClient.GetAsync(1);
+            
             // Aqui depois entra:
             // - chamada HTTP para a Caixa
             // - parse do retorno
