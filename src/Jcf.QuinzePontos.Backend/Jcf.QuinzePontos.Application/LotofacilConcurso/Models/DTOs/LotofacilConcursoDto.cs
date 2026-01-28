@@ -3,8 +3,8 @@
     public class LotofacilConcursoDto
     {
         public int Numero { get; set; }
-        public DateTime DataApuracao { get; set; }
-        public DateTime DataProximoConcurso { get; set; }
+        public string? DataApuracao { get; set; }
+        public string? DataProximoConcurso { get; set; }
 
         public bool Acumulado { get; set; }
         public bool UltimoConcurso { get; set; }
