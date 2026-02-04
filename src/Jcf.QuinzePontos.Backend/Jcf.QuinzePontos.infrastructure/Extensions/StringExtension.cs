@@ -37,5 +37,15 @@ namespace Jcf.QuinzePontos.Infrastructure.Extensions
 
             return null;
         }
+
+        public static bool Min(this string str, int min = 3)
+        {
+            return str.Length >= (min < 0 ? 0 : min);
+        }
+
+        public static bool Max(this string str, int max = 256)
+        {
+            return str.Length <= (max < 0 ? 256 : max);
+        }
     }
 }
