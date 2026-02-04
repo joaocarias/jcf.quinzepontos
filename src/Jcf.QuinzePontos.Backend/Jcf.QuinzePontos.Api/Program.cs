@@ -9,7 +9,7 @@ bool isDevelopment = builder.Environment.IsDevelopment();
 
 builder.Services.AddDatabaseConfiguration(builder.Configuration, isDevelopment);
 builder.Services.AddCorsConfiguration(builder.Configuration);
-builder.Services.AddCustomRepositories();
+builder.Services.AddRepositories();
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();

@@ -6,7 +6,7 @@ namespace Jcf.QuinzePontos.Infrastructure.DependencyInjection
 {
     public static class RepositoriesConfigurations
     {
-        public static IServiceCollection AddCustomRepositories(this IServiceCollection services)
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<ILotofacilConcursoRepository, LotofacilConcursoRepository>();
             

@@ -16,7 +16,7 @@ builder.Services
 builder.Services.AddApplicationServices();
 builder.Services.AddApplicationHttpsClients();
 builder.Services.AddDatabaseConfiguration(builder.Configuration, builder.Environment.IsDevelopment());
-builder.Services.AddCustomRepositories();
+builder.Services.AddRepositories();
 builder.Services.AddHostedService<LotoFacilWorker>();
     
 var host = builder.Build();
