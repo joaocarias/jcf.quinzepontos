@@ -1,5 +1,4 @@
 using Jcf.QuinzePontos.Application.DependencyInjection;
-using Jcf.QuinzePontos.Application.LotofacilConcurso.Clients;
 using Jcf.QuinzePontos.Application.LotofacilConcurso.Options;
 using Jcf.QuinzePontos.GetResultsWorker;
 using Jcf.QuinzePontos.Infrastructure.DependencyInjection;

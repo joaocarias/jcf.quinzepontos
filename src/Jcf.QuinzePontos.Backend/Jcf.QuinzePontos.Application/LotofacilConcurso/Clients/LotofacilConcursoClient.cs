@@ -19,7 +19,7 @@ namespace Jcf.QuinzePontos.Application.LotofacilConcurso.Clients
             _logger = logger;
         }
 
-        public async Task<LotofacilConcursoDto?> GetAsync(int numeroConcurso)
+        public async Task<LotofacilConcursoDTO?> GetAsync(int numeroConcurso)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace Jcf.QuinzePontos.Application.LotofacilConcurso.Clients
                     return null;
                 }                    
 
-                return await response.Content.ReadFromJsonAsync<LotofacilConcursoDto>();
+                return await response.Content.ReadFromJsonAsync<LotofacilConcursoDTO>();
             }
             catch (Exception ex)
             {

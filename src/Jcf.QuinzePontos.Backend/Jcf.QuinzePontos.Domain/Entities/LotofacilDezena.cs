@@ -10,5 +10,12 @@ namespace Jcf.QuinzePontos.Domain.Entities
         public LotofacilConcurso Concurso { get; private set; } = null!;
 
         public int Numero { get; private set; }
+
+        public LotofacilDezena() { }
+
+        public LotofacilDezena(int numero)
+        {
+            Numero = numero;
+        }
     }
 }

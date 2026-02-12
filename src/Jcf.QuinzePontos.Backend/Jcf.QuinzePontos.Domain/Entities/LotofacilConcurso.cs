@@ -20,7 +20,6 @@
 
         public ICollection<LotofacilDezena> Dezenas { get; private set; } = new List<LotofacilDezena>();
         public ICollection<LotofacilRateio> Rateios { get; private set; } = new List<LotofacilRateio>();
-        public ICollection<LotofacilGanhadorUF> GanhadoresUF { get; private set; } = new List<LotofacilGanhadorUF>();
-
+        public ICollection<LotofacilGanhadorUF> GanhadoresUF { get; private set; } = new List<LotofacilGanhadorUF>();        
     }
 }
