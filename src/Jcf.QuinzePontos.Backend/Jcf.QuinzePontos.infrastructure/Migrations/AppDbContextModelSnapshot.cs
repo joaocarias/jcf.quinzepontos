@@ -31,7 +31,7 @@ namespace Jcf.QuinzePontos.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<bool>("Acumulado")
+                    b.Property<bool?>("Acumulado")
                         .HasColumnType("boolean");
 
                     b.Property<DateTime>("CreateAt")
@@ -40,46 +40,43 @@ namespace Jcf.QuinzePontos.Infrastructure.Migrations
                     b.Property<DateTime>("DataApuracao")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DataProximoConcurso")
+                    b.Property<DateTime?>("DataProximoConcurso")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
                     b.Property<string>("LocalSorteio")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("NomeMunicipioUFSorteio")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("Numero")
                         .HasColumnType("integer");
 
                     b.Property<string>("Observacao")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<Guid>("Uid")
                         .HasColumnType("uuid");
 
-                    b.Property<bool>("UltimoConcurso")
+                    b.Property<bool?>("UltimoConcurso")
                         .HasColumnType("boolean");
 
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<decimal>("ValorAcumuladoConcursoEspecial")
+                    b.Property<decimal?>("ValorAcumuladoConcursoEspecial")
                         .HasColumnType("numeric");
 
-                    b.Property<decimal>("ValorAcumuladoProximoConcurso")
+                    b.Property<decimal?>("ValorAcumuladoProximoConcurso")
                         .HasColumnType("numeric");
 
-                    b.Property<decimal>("ValorArrecadado")
+                    b.Property<decimal?>("ValorArrecadado")
                         .HasColumnType("numeric");
 
-                    b.Property<decimal>("ValorEstimadoProximoConcurso")
+                    b.Property<decimal?>("ValorEstimadoProximoConcurso")
                         .HasColumnType("numeric");
 
                     b.HasKey("Id");
@@ -90,7 +87,7 @@ namespace Jcf.QuinzePontos.Infrastructure.Migrations
                     b.ToTable("Concursos", "loto_facil");
                 });
 
-            modelBuilder.Entity("Jcf.QuinzePontos.Domain.Entities.LotofacilDezena", b =>
+            modelBuilder.Entity("Jcf.QuinzePontos.Domain.Entities.LotofacilDezenas", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -98,16 +95,58 @@ namespace Jcf.QuinzePontos.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("ConcursoId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("Numero")
+                    b.Property<long?>("LotofacilConcursoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("N1")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N10")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N11")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N12")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N13")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N14")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N15")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N2")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N3")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N4")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N5")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N6")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N7")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N8")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("N9")
                         .HasColumnType("integer");
 
                     b.Property<Guid>("Uid")
@@ -118,7 +157,8 @@ namespace Jcf.QuinzePontos.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ConcursoId");
+                    b.HasIndex("LotofacilConcursoId")
+                        .IsUnique();
 
                     b.ToTable("Dezenas", "loto_facil");
                 });
@@ -131,24 +171,22 @@ namespace Jcf.QuinzePontos.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("ConcursoId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("Ganhadores")
+                    b.Property<int?>("Ganhadores")
                         .HasColumnType("integer");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
+                    b.Property<long?>("LotofacilConcursoId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Municipio")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("UF")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<Guid>("Uid")
@@ -159,7 +197,7 @@ namespace Jcf.QuinzePontos.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ConcursoId");
+                    b.HasIndex("LotofacilConcursoId");
 
                     b.ToTable("GanhadoresUF", "loto_facil");
                 });
@@ -172,23 +210,22 @@ namespace Jcf.QuinzePontos.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("ConcursoId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("DescricaoFaixa")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Faixa")
+                    b.Property<int?>("Faixa")
                         .HasColumnType("integer");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("NumeroDeGanhadores")
+                    b.Property<long?>("LotofacilConcursoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("NumeroDeGanhadores")
                         .HasColumnType("integer");
 
                     b.Property<Guid>("Uid")
@@ -197,47 +234,41 @@ namespace Jcf.QuinzePontos.Infrastructure.Migrations
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<decimal>("ValorPremio")
+                    b.Property<decimal?>("ValorPremio")
                         .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ConcursoId");
+                    b.HasIndex("LotofacilConcursoId");
 
                     b.ToTable("Rateios", "loto_facil");
                 });
 
-            modelBuilder.Entity("Jcf.QuinzePontos.Domain.Entities.LotofacilDezena", b =>
+            modelBuilder.Entity("Jcf.QuinzePontos.Domain.Entities.LotofacilDezenas", b =>
                 {
-                    b.HasOne("Jcf.QuinzePontos.Domain.Entities.LotofacilConcurso", "Concurso")
-                        .WithMany("Dezenas")
-                        .HasForeignKey("ConcursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Jcf.QuinzePontos.Domain.Entities.LotofacilConcurso", "LotofacilConcurso")
+                        .WithOne("Dezenas")
+                        .HasForeignKey("Jcf.QuinzePontos.Domain.Entities.LotofacilDezenas", "LotofacilConcursoId");
 
-                    b.Navigation("Concurso");
+                    b.Navigation("LotofacilConcurso");
                 });
 
             modelBuilder.Entity("Jcf.QuinzePontos.Domain.Entities.LotofacilGanhadorUF", b =>
                 {
-                    b.HasOne("Jcf.QuinzePontos.Domain.Entities.LotofacilConcurso", "Concurso")
+                    b.HasOne("Jcf.QuinzePontos.Domain.Entities.LotofacilConcurso", "LotofacilConcurso")
                         .WithMany("GanhadoresUF")
-                        .HasForeignKey("ConcursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LotofacilConcursoId");
 
-                    b.Navigation("Concurso");
+                    b.Navigation("LotofacilConcurso");
                 });
 
             modelBuilder.Entity("Jcf.QuinzePontos.Domain.Entities.LotofacilRateio", b =>
                 {
-                    b.HasOne("Jcf.QuinzePontos.Domain.Entities.LotofacilConcurso", "Concurso")
+                    b.HasOne("Jcf.QuinzePontos.Domain.Entities.LotofacilConcurso", "LotofacilConcurso")
                         .WithMany("Rateios")
-                        .HasForeignKey("ConcursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LotofacilConcursoId");
 
-                    b.Navigation("Concurso");
+                    b.Navigation("LotofacilConcurso");
                 });
 
             modelBuilder.Entity("Jcf.QuinzePontos.Domain.Entities.LotofacilConcurso", b =>

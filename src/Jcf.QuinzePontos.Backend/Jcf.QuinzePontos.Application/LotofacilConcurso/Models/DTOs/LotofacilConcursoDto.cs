@@ -1,9 +1,10 @@
-﻿namespace Jcf.QuinzePontos.Application.LotofacilConcurso.Models.DTOs
+﻿using Jcf.QuinzePontos.infrastructure.Extensions;
+using Jcf.QuinzePontos.Infrastructure.Extensions;
+
+namespace Jcf.QuinzePontos.Application.LotofacilConcurso.Models.DTOs
 {
     public class LotofacilConcursoDTO
-    {
-        public long? Id { get; set; } 
-
+    {        
         public bool Acumulado { get; set; }
         public string? DataApuracao { get; set; }
         public string? DataProximoConcurso { get; set; }
@@ -23,5 +24,27 @@
         public ICollection<int> ListaDezenas { get; set; } = [];
         public ICollection<LotofacilGanhadorUFDTO> ListaMunicipioUFGanhadores { get; set; } = [];
         public ICollection<LotofacilRateioDTO> ListaRateioPremio { get; set; } = []; 
+
+        public Domain.Entities.LotofacilConcurso ToLotofacilConcurso()
+        {
+            var entity = new Domain.Entities.LotofacilConcurso(
+                    this.Numero,
+                    this.DataApuracao?.DatePtBrToDateTime().GetValueOrDefault().ToUtcKind() ?? DateTime.MinValue,
+                    this.DataProximoConcurso?.DatePtBrToDateTime().GetValueOrDefault().ToUtcKind() ?? DateTime.MinValue,
+                    this.Acumulado,
+                    this.UltimoConcurso,
+                    this.LocalSorteio,
+                    this.NomeMunicipioUFSorteio,
+                    this.Observacao,
+                    this.ValorArrecadado,
+                    this.ValorEstimadoProximoConcurso,
+                    this.ValorAcumuladoProximoConcurso,
+                    this.ValorAcumuladoProximoConcurso,
+                    this.ListaDezenas.Any() ? ListaDezenas.ListIntToDeLotofacilDezenas() : null,
+                    [.. this.ListaRateioPremio.Select(x => x.ToLotofacilRateio())],
+                    [.. this.ListaMunicipioUFGanhadores.Select(x => x.ToLotofacilGanhadorUF())]
+                );
+            return entity;
+        }
     }
 }

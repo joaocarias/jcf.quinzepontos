@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Jcf.QuinzePontos.Domain\Jcf.QuinzePontos.Domain.csproj" />
+    <ProjectReference Include="..\Jcf.QuinzePontos.infrastructure\Jcf.QuinzePontos.infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

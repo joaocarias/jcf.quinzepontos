@@ -19,17 +19,24 @@ namespace Jcf.QuinzePontos.Application.LotofacilConcurso.Services
         public async Task GetConcursoAsync(
             CancellationToken cancellationToken)
         {
+            var concurso = 1;
+            Console.WriteLine($" {DateTime.UtcNow} | Iniciando atualização dos resultados da Lotofácil...");
+            Console.WriteLine($" {DateTime.UtcNow} | Obtendo dados do concurso {concurso} da Lotofácil...");
+            var response = await _LotofacilConcursoClient.GetAsync(1);
 
-            var l = await _LotofacilConcursoClient.GetAsync(1);
-            
-            // Aqui depois entra:
-            // - chamada HTTP para a Caixa
-            // - parse do retorno
-            // - salvar no banco
+            if (response == null)
+            {
+                Console.WriteLine($" {DateTime.UtcNow} | Não foi possível obter dados para do concurso da Lotofácil.");
+            }
 
-            Console.WriteLine($" {DateTime.UtcNow} | Atualizando resultados da Lotofácil...");
+            var concursoResultado = response?.ToLotofacilConcurso();
+            concursoResultado = concursoResultado != null ? await _repository.CreateAsync(concursoResultado) : null;
 
-            // Por enquanto só um placeholder
+            if (concursoResultado == null)            
+                Console.WriteLine($" {DateTime.UtcNow} | Não foi possível salvar os dados do concurso da Lotofácil.");
+            else
+                Console.WriteLine($" {DateTime.UtcNow} | Atualizando resultados da Lotofácil...");
+    
             await Task.CompletedTask;
         }
     }

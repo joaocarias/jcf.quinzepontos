@@ -4,13 +4,22 @@ namespace Jcf.QuinzePontos.Domain.Entities
 {
     public class LotofacilGanhadorUF : EntityBase
     {
-        public long ConcursoId { get; private set; }
+        public LotofacilGanhadorUF(string uF, string municipio, int ganhadores)
+        {
+            UF = uF;
+            Municipio = municipio;
+            Ganhadores = ganhadores;
+        }
 
-        [ForeignKey(nameof(ConcursoId))]
-        public LotofacilConcurso Concurso { get; set; } = null!;
+        public LotofacilGanhadorUF() { }
 
-        public string UF { get; set; } = string.Empty;
-        public string Municipio { get; set; } = string.Empty;
-        public int Ganhadores { get; set; }
+        public long? LotofacilConcursoId { get; private set; }
+
+        [ForeignKey(nameof(LotofacilConcursoId))]
+        public LotofacilConcurso? LotofacilConcurso { get; private set; }
+
+        public string? UF { get; set; }
+        public string? Municipio { get; set; }
+        public int? Ganhadores { get; set; }        
     }
 }
