@@ -41,6 +41,13 @@
 
         public LotofacilDezenas? Dezenas { get; private set; } 
         public ICollection<LotofacilRateio> Rateios { get; private set; } = new List<LotofacilRateio>();
-        public ICollection<LotofacilGanhadorUF> GanhadoresUF { get; private set; } = new List<LotofacilGanhadorUF>();        
+        public ICollection<LotofacilGanhadorUF> GanhadoresUF { get; private set; } = new List<LotofacilGanhadorUF>();
+
+        public void SetRelations(LotofacilDezenas? dezenas, ICollection<LotofacilRateio> rateios, ICollection<LotofacilGanhadorUF> ganhadoresUF)
+        {
+            Dezenas = dezenas;
+            Rateios = rateios;
+            GanhadoresUF = ganhadoresUF;
+        }
     }
 }

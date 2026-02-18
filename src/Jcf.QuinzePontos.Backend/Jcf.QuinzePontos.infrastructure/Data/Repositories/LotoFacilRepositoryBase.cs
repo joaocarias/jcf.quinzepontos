@@ -8,11 +8,13 @@ namespace Jcf.QuinzePontos.Infrastructure.Data.Repositories
         where T : class
     {
         protected readonly AppDbContext _context;
+        protected readonly AppDapperContext _appDapperContext;
         protected readonly DbSet<T> _dbSet;
 
-        public LotoFacilRepositoryBase(AppDbContext context)
+        public LotoFacilRepositoryBase(AppDbContext context, AppDapperContext appDapperContext)
         {
             _context = context;
+            _appDapperContext = appDapperContext;
             _dbSet = _context.Set<T>();
         }
 
