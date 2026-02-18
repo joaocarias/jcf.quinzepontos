@@ -1,5 +1,6 @@
 ﻿using Jcf.QuinzePontos.Application.LotofacilConcurso.Clients;
 using Jcf.QuinzePontos.Application.LotofacilConcurso.Interfaces.Services;
+using Jcf.QuinzePontos.Application.LotofacilConcurso.Models.DTOs;
 using Jcf.QuinzePontos.Domain.Interfaces.Repositories;
 
 namespace Jcf.QuinzePontos.Application.LotofacilConcurso.Services
@@ -19,14 +20,11 @@ namespace Jcf.QuinzePontos.Application.LotofacilConcurso.Services
         public async Task GetConcursoAsync(
             CancellationToken cancellationToken)
         {
-            var concurso = 1;
-            Console.WriteLine($" {DateTime.UtcNow} | Iniciando atualização dos resultados da Lotofácil...");
-            Console.WriteLine($" {DateTime.UtcNow} | Obtendo dados do concurso {concurso} da Lotofácil...");
-            var response = await _LotofacilConcursoClient.GetAsync(1);
-
+            var response = await GetNextAsync();
             if (response == null)
             {
                 Console.WriteLine($" {DateTime.UtcNow} | Não foi possível obter dados para do concurso da Lotofácil.");
+                return;
             }
 
             var concursoResultado = response?.ToLotofacilConcurso();
@@ -38,6 +36,16 @@ namespace Jcf.QuinzePontos.Application.LotofacilConcurso.Services
                 Console.WriteLine($" {DateTime.UtcNow} | Atualizando resultados da Lotofácil...");
     
             await Task.CompletedTask;
+        }
+
+        private async Task<LotofacilConcursoDTO?> GetNextAsync()
+        {
+            var concurso = await _repository.GetLastAsync();
+            var next = concurso == null ? 1 : concurso?.Numero + 1;
+
+            Console.WriteLine($" {DateTime.UtcNow} | Iniciando atualização dos resultados da Lotofácil...");
+            Console.WriteLine($" {DateTime.UtcNow} | Obtendo dados do concurso {next} da Lotofácil...");
+            return await _LotofacilConcursoClient.GetAsync(next.GetValueOrDefault());            
         }
     }
 }
