@@ -1,4 +1,5 @@
-﻿using Jcf.QuinzePontos.Domain.Interfaces.Repositories;
+﻿using Dapper;
+using Jcf.QuinzePontos.Domain.Interfaces.Repositories;
 using Jcf.QuinzePontos.Infrastructure.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 
@@ -46,6 +47,16 @@ namespace Jcf.QuinzePontos.Infrastructure.Data.Repositories
         {
             _dbSet.Remove(entity);
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        private protected async Task<TResult> ExecuteQueryAsync<TResult>(
+            string query,
+            Func<SqlMapper.GridReader, Task<TResult>> map)
+        {
+            using var multi = await _appDapperContext.Connection
+                .QueryMultipleAsync(query);
+
+            return await map(multi);
         }
     }
 }

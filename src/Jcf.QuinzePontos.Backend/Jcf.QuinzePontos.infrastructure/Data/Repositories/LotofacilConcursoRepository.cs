@@ -3,8 +3,6 @@ using Jcf.QuinzePontos.Domain.Entities;
 using Jcf.QuinzePontos.Domain.Interfaces.Repositories;
 using Jcf.QuinzePontos.infrastructure.Data.Queries.LotofacilConcurso;
 using Jcf.QuinzePontos.Infrastructure.Data.Contexts;
-using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Jcf.QuinzePontos.Infrastructure.Data.Repositories
 {
@@ -17,19 +15,20 @@ namespace Jcf.QuinzePontos.Infrastructure.Data.Repositories
 
         public async Task<LotofacilConcurso?> GetLastAsync()
         {           
-            using var multi = await _appDapperContext.Connection.QueryMultipleAsync(SqlGet._LAST_);
+            return await ExecuteQueryAsync(SqlGet._LAST_, async multi =>
+            {
+                var concurso = await multi.ReadFirstOrDefaultAsync<LotofacilConcurso>();
+                if (concurso == null)
+                    return null;
 
-            var concurso = await multi.ReadFirstOrDefaultAsync<LotofacilConcurso>();
-            if (concurso == null)
-                return null;
+                var dezenas = await multi.ReadFirstOrDefaultAsync<LotofacilDezenas>();
+                var rateios = (await multi.ReadAsync<LotofacilRateio>()).ToList();
+                var ganhadores = (await multi.ReadAsync<LotofacilGanhadorUF>()).ToList();
 
-            var dezenas = await multi.ReadFirstOrDefaultAsync<LotofacilDezenas>();
-            var rateios = (await multi.ReadAsync<LotofacilRateio>()).ToList();
-            var ganhadores = (await multi.ReadAsync<LotofacilGanhadorUF>()).ToList();
+                concurso.SetRelations(dezenas, rateios, ganhadores);
 
-            concurso.SetRelations(dezenas, rateios, ganhadores);
-
-            return concurso;
+                return concurso;
+            });            
         }
     }
 }

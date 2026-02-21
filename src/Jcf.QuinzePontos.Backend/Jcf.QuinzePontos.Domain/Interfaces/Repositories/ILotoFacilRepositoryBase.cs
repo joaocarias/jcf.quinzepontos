@@ -1,4 +1,6 @@
-﻿namespace Jcf.QuinzePontos.Domain.Interfaces.Repositories
+﻿using Dapper;
+
+namespace Jcf.QuinzePontos.Domain.Interfaces.Repositories
 {
     public interface ILotoFacilRepositoryBase<T> where T : class
     {
@@ -7,5 +9,6 @@
         Task<IEnumerable<T>?> GetAllAsync();
         Task<T?> Update(T entity);
         Task<bool> Delete(T entity);
+
     }
 }
