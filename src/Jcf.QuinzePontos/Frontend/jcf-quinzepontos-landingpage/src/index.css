@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: #08031A;
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #08031A; }
+  ::-webkit-scrollbar-thumb { background: #4A1080; border-radius: 3px; }
+}
+
+@layer utilities {
+  .grad-gold {
+    background: linear-gradient(135deg, #FFE44D 0%, #FFA500 55%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .grad-pink-purple {
+    background: linear-gradient(135deg, #B04FFF 0%, #E91E8C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    background: rgba(16, 6, 36, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(140, 60, 220, 0.22);
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 24px rgba(110, 30, 200, 0.45);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 24px rgba(255, 215, 0, 0.5);
+  }
+}
