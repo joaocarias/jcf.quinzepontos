@@ -2,6 +2,7 @@
 using Jcf.QuinzePontos.Domain.Interfaces.Repositories;
 using Jcf.QuinzePontos.Infrastructure.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Jcf.QuinzePontos.Infrastructure.Data.Repositories
 {
@@ -11,12 +12,14 @@ namespace Jcf.QuinzePontos.Infrastructure.Data.Repositories
         protected readonly AppDbContext _context;
         protected readonly AppDapperContext _appDapperContext;
         protected readonly DbSet<T> _dbSet;
+        protected readonly ILogger<T> _logger;
 
-        public LotoFacilRepositoryBase(AppDbContext context, AppDapperContext appDapperContext)
+        public LotoFacilRepositoryBase(ILogger<T> logger, AppDbContext context, AppDapperContext appDapperContext)
         {
             _context = context;
             _appDapperContext = appDapperContext;
             _dbSet = _context.Set<T>();
+            _logger = logger;
         }
 
         public async Task<T?> GetByIdAsync(long id)
@@ -36,14 +39,14 @@ namespace Jcf.QuinzePontos.Infrastructure.Data.Repositories
             return entity;
         }
 
-        public async Task<T?> Update(T entity)
+        public async Task<T?> UpdateAsync(T entity)
         {
             _dbSet.Update(entity);
             await _context.SaveChangesAsync();
             return entity;
         }
 
-        public async Task<bool> Delete(T entity)
+        public async Task<bool> DeleteAsync(T entity)
         {
             _dbSet.Remove(entity);
             return await _context.SaveChangesAsync() > 0;

@@ -1,15 +1,13 @@
 # === BACKEND .NET (C#) ===
-## Build
+## Build artifacts
 bin/
 obj/
 out/
 TestResults/
-*.user
 *.suo
 *.userosscache
 *.sln.docstates
 *.cache
-*.log
 
 ## Publish
 *.Publish.xml
@@ -20,63 +18,49 @@ TestResults/
 *.pidb
 *.svclog
 
-## ASP.NET Core
-wwwroot/node_modules/
-appsettings.Development.json
-appsettings.Local.json
+## ASP.NET Core - configs locais (não commitar segredos)
 appsettings.*.json
 secrets.json
 
-## Entity Framework
-Migrations/
-
-## dotCover
-.idea/
-.idea/**
-
-## VS Code
-.vscode/
-.history/
-
-## Visual Studio
-*.vs/
+## Visual Studio / IDEs
 .vs/
-
-# Rider
+.vscode/
 .idea/
-.idea/**
-
-# Auto-generated files
-Generated_Code/
-
-# User-specific files
+.history/
 *.user
 *.vspscc
 *.vssscc
 
-# Others
+## ReSharper / dotCover
 _ReSharper*/
 *.resharper
 *.DotSettings.user
 *.DotCover
 
-# === FRONTEND Vue 3 ===
+## Auto-generated
+Generated_Code/
+
+# === FRONTEND React + TypeScript ===
 node_modules/
 dist/
+build/
+.cache/
+*.tsbuildinfo
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# === Docker ===
+docker-compose.override.yml
+docker-compose.*.yml
+
+# === Ambiente e segredos ===
 .env
 .env.*
 *.local
-*.DS_Store
-.idea/
-.vscode/
-*.sublime-project
-*.sublime-workspace
 
-# === Common logs and OS files ===
+# === Arquivos de sistema / temporários ===
 *.log
 *.tmp
 *.temp
@@ -86,9 +70,3 @@ pnpm-debug.log*
 *.swn
 *.DS_Store
 Thumbs.db
-
-# === Docker (opcional) ===
-**/docker-compose.override.yml
-**/docker-compose.*.yml
-**/Dockerfile.*
-.dockerignore

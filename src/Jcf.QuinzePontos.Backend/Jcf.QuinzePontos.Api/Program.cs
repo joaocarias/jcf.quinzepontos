@@ -1,5 +1,7 @@
 using Jcf.QuinzePontos.Api.Configurations;
+using Jcf.QuinzePontos.Infrastructure.Data.Contexts;
 using Jcf.QuinzePontos.Infrastructure.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,12 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await db.Database.MigrateAsync();
+}
 
 // Configure the HTTP request pipeline.
 if (isDevelopment)

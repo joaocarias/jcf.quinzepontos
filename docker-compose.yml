@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: userjcfcontrolapp
+      POSTGRES_PASSWORD: JcfControl@123
+      POSTGRES_DB: db_jcf_quinze_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U userjcfcontrolapp -d db_jcf_quinze_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./src/Jcf.QuinzePontos.Backend
+      dockerfile: Dockerfile.api
+    ports:
+      - "5031:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Username=userjcfcontrolapp;Password=JcfControl@123;Database=db_jcf_quinze_dev"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  worker:
+    build:
+      context: ./src/Jcf.QuinzePontos.Backend
+      dockerfile: Dockerfile.worker
+    environment:
+      DOTNET_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Username=userjcfcontrolapp;Password=JcfControl@123;Database=db_jcf_quinze_dev"
+      APIs__LotofacilGetResultado__BaseUrl: "https://servicebus3.caixa.gov.br"
+      APIs__LotofacilGetResultado__EndPoint: "/portaldeloterias/api/lotofacil"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

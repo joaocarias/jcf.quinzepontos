@@ -1,4 +1,6 @@
 using Jcf.QuinzePontos.Application.DependencyInjection;
+using Jcf.QuinzePontos.Infrastructure.Data.Contexts;
+using Microsoft.EntityFrameworkCore;
 using Jcf.QuinzePontos.Application.LotofacilConcurso.Options;
 using Jcf.QuinzePontos.GetResultsWorker;
 using Jcf.QuinzePontos.Infrastructure.DependencyInjection;
@@ -19,4 +21,11 @@ builder.Services.AddRepositories();
 builder.Services.AddHostedService<LotoFacilWorker>();
     
 var host = builder.Build();
+
+using (var scope = host.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await db.Database.MigrateAsync();
+}
+
 host.Run();

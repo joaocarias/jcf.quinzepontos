@@ -1,0 +1,18 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+
+COPY Jcf.QuinzePontos.Domain/Jcf.QuinzePontos.Domain.csproj Jcf.QuinzePontos.Domain/
+COPY Jcf.QuinzePontos.infrastructure/Jcf.QuinzePontos.Infrastructure.csproj Jcf.QuinzePontos.infrastructure/
+COPY Jcf.QuinzePontos.Application/Jcf.QuinzePontos.Application.csproj Jcf.QuinzePontos.Application/
+COPY Jcf.QuinzePontos.Api/Jcf.QuinzePontos.Api.csproj Jcf.QuinzePontos.Api/
+RUN dotnet restore Jcf.QuinzePontos.Api/Jcf.QuinzePontos.Api.csproj
+
+COPY . .
+RUN dotnet publish Jcf.QuinzePontos.Api/Jcf.QuinzePontos.Api.csproj \
+    -c Release -o /app/publish --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
+WORKDIR /app
+COPY --from=build /app/publish .
+EXPOSE 8080
+ENTRYPOINT ["dotnet", "Jcf.QuinzePontos.Api.dll"]
