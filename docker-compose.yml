@@ -2,15 +2,15 @@ services:
   postgres:
     image: postgres:17-alpine
     environment:
-      POSTGRES_USER: userjcfcontrolapp
-      POSTGRES_PASSWORD: JcfControl@123
-      POSTGRES_DB: db_jcf_quinze_dev
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U userjcfcontrolapp -d db_jcf_quinze_dev"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -23,7 +23,7 @@ services:
       - "5031:8080"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Username=userjcfcontrolapp;Password=JcfControl@123;Database=db_jcf_quinze_dev"
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Username=${DB_USER};Password=${DB_PASSWORD};Database=${DB_NAME}"
     depends_on:
       postgres:
         condition: service_healthy
@@ -40,7 +40,7 @@ services:
       dockerfile: Dockerfile.worker
     environment:
       DOTNET_ENVIRONMENT: Development
-      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Username=userjcfcontrolapp;Password=JcfControl@123;Database=db_jcf_quinze_dev"
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Username=${DB_USER};Password=${DB_PASSWORD};Database=${DB_NAME}"
       APIs__LotofacilGetResultado__BaseUrl: "https://servicebus3.caixa.gov.br"
       APIs__LotofacilGetResultado__EndPoint: "/portaldeloterias/api/lotofacil"
     depends_on:

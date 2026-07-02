@@ -58,6 +58,7 @@ docker-compose.*.yml
 # === Ambiente e segredos ===
 .env
 .env.*
+!.env.example
 *.local
 
 # === Arquivos de sistema / temporários ===
