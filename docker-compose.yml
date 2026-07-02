@@ -34,6 +34,13 @@ services:
       retries: 10
       start_period: 20s
 
+  landingpage:
+    build:
+      context: ./src/Jcf.QuinzePontos/Frontend/jcf-quinzepontos-landingpage
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+
   worker:
     build:
       context: ./src/Jcf.QuinzePontos.Backend
