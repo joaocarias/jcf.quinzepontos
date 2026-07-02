@@ -27,7 +27,7 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.
 if (isDevelopment)
 {
-    app.MapOpenApi("v1");
+    app.MapOpenApi();
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/openapi/v1.json", "v1");
