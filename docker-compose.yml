@@ -26,6 +26,7 @@ services:
       ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Username=${DB_USER};Password=${DB_PASSWORD};Database=${DB_NAME}"
       CorsSettings__AllowedOrigins__0: "http://localhost:3000"
       CorsSettings__AllowedOrigins__1: "http://localhost:5173"
+      CorsSettings__AllowedOrigins__2: "http://localhost:3001"
       Jwt__Secret: ${JWT_SECRET}
       AdminSeed__Email: ${ADMIN_EMAIL}
       AdminSeed__Password: ${ADMIN_PASSWORD}
@@ -47,6 +48,15 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:80"
+
+  adminportal:
+    build:
+      context: ./src/Jcf.QuinzePontos/Frontend/jcf-quinzepontos-portal
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"
+    depends_on:
+      - api
 
   worker:
     build:

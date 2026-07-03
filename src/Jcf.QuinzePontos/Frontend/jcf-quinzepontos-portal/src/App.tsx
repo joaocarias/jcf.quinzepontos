@@ -1,0 +1,22 @@
+import { Route, Routes } from 'react-router-dom'
+import { AuthProvider, RequireAuth } from './lib/auth'
+import LoginPage from './pages/LoginPage'
+import DashboardPage from './pages/DashboardPage'
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <DashboardPage />
+            </RequireAuth>
+          }
+        />
+      </Routes>
+    </AuthProvider>
+  )
+}

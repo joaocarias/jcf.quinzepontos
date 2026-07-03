@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: #14121A;
+    color: rgba(242, 239, 234, 0.94);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #14121A; }
+  ::-webkit-scrollbar-thumb { background: #3A3444; border-radius: 3px; }
+}
+
+@layer utilities {
+  /* Anéis concêntricos do globo sorteador — assinatura visual discreta, não decorativa */
+  .rings-pattern {
+    background-image: repeating-radial-gradient(
+      circle at 50% 42%,
+      rgba(176, 40, 111, 0.10) 0,
+      rgba(176, 40, 111, 0.10) 1px,
+      transparent 1px,
+      transparent 56px
+    );
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
