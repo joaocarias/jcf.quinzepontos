@@ -13,6 +13,12 @@ namespace Jcf.QuinzePontos.Application.DependencyInjection
         this IServiceCollection services)
         {
             services.AddScoped<ILotofacilConcursoService, LotofacilConcursoService>();
+            return services;
+        }
+
+        public static IServiceCollection AddAuthApplicationServices(
+        this IServiceCollection services)
+        {
             services.AddScoped<IAuthService, AuthService>();
             return services;
         }

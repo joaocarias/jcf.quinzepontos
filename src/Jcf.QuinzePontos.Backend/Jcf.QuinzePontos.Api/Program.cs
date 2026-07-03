@@ -18,6 +18,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddIdentityConfiguration();
 builder.Services.AddJwtAuthenticationConfiguration(builder.Configuration);
 builder.Services.AddApplicationServices();
+builder.Services.AddAuthApplicationServices();
 builder.Services.AddApplicationHttpsClients();
 
 builder.Services.AddControllers();
