@@ -1,4 +1,6 @@
 using Jcf.QuinzePontos.Api.Configurations;
+using Jcf.QuinzePontos.Api.Startup;
+using Jcf.QuinzePontos.Application.DependencyInjection;
 using Jcf.QuinzePontos.Infrastructure.Data.Contexts;
 using Jcf.QuinzePontos.Infrastructure.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +14,11 @@ bool isDevelopment = builder.Environment.IsDevelopment();
 builder.Services.AddDatabaseConfiguration(builder.Configuration, isDevelopment);
 builder.Services.AddCorsConfiguration(builder.Configuration);
 builder.Services.AddRepositories();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddIdentityConfiguration();
+builder.Services.AddJwtAuthenticationConfiguration(builder.Configuration);
+builder.Services.AddApplicationServices();
+builder.Services.AddApplicationHttpsClients();
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
@@ -22,6 +29,7 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     await db.Database.MigrateAsync();
+    await IdentitySeeder.SeedAsync(scope.ServiceProvider, builder.Configuration);
 }
 
 // Configure the HTTP request pipeline.

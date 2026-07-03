@@ -1,4 +1,6 @@
-﻿using Jcf.QuinzePontos.Application.LotofacilConcurso.Clients;
+﻿using Jcf.QuinzePontos.Application.Auth.Interfaces.Services;
+using Jcf.QuinzePontos.Application.Auth.Services;
+using Jcf.QuinzePontos.Application.LotofacilConcurso.Clients;
 using Jcf.QuinzePontos.Application.LotofacilConcurso.Interfaces.Services;
 using Jcf.QuinzePontos.Application.LotofacilConcurso.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +13,7 @@ namespace Jcf.QuinzePontos.Application.DependencyInjection
         this IServiceCollection services)
         {
             services.AddScoped<ILotofacilConcursoService, LotofacilConcursoService>();
+            services.AddScoped<IAuthService, AuthService>();
             return services;
         }
 

@@ -9,7 +9,8 @@ namespace Jcf.QuinzePontos.Infrastructure.DependencyInjection
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<ILotofacilConcursoRepository, LotofacilConcursoRepository>();
-            
+            services.AddScoped<ILotofacilNumeroEstatisticaRepository, LotofacilNumeroEstatisticaRepository>();
+
             return services;
         }
     }

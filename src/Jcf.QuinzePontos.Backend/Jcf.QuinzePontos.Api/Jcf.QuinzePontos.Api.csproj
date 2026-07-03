@@ -4,9 +4,11 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-Jcf.QuinzePontos.Api-b6f3a2f4-6f0f-4a52-8f0a-5b6b6a5a2c39</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -17,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Jcf.QuinzePontos.infrastructure\Jcf.QuinzePontos.Infrastructure.csproj" />
+    <ProjectReference Include="..\Jcf.QuinzePontos.Application\Jcf.QuinzePontos.Application.csproj" />
   </ItemGroup>
 
 </Project>
