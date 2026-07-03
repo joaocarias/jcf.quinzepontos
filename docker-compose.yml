@@ -53,6 +53,8 @@ services:
     build:
       context: ./src/Jcf.QuinzePontos/Frontend/jcf-quinzepontos-portal
       dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: "http://localhost:5031"
     ports:
       - "3001:80"
     depends_on:

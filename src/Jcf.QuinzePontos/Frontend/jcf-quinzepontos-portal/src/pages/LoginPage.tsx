@@ -55,17 +55,21 @@ export default function LoginPage() {
     setError(null)
     setLoading(true)
 
-    const result = await signIn({ email, password })
+    try {
+      const result = await signIn({ email, password })
 
-    setLoading(false)
+      if (!result.success) {
+        setError(result.errors[0] ?? 'Não foi possível entrar. Verifique suas credenciais.')
+        return
+      }
 
-    if (!result.success) {
-      setError(result.errors[0] ?? 'Não foi possível entrar. Verifique suas credenciais.')
-      return
+      const redirectTo = (location.state as LocationState)?.from?.pathname ?? '/'
+      navigate(redirectTo, { replace: true })
+    } catch {
+      setError('Não foi possível entrar. Tente novamente.')
+    } finally {
+      setLoading(false)
     }
-
-    const redirectTo = (location.state as LocationState)?.from?.pathname ?? '/'
-    navigate(redirectTo, { replace: true })
   }
 
   return (
