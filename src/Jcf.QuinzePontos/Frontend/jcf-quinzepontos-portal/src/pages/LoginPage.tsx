@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { Navigate, useLocation, useNavigate, type Location } from 'react-router-dom'
 import { Seal } from '../components/Seal'
+import { ThemeToggle } from '../components/ThemeToggle'
 import { useAuth } from '../lib/auth'
 
 interface LocationState {
@@ -73,7 +74,11 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="grid min-h-screen font-body text-ink lg:grid-cols-2">
+    <div className="relative grid min-h-screen font-body text-ink lg:grid-cols-2">
+      <div className="absolute right-6 top-6 z-10">
+        <ThemeToggle />
+      </div>
+
       <aside className="rings-pattern relative hidden flex-col justify-between overflow-hidden border-r border-hairline bg-canvas p-14 lg:flex">
         <div className="flex items-center gap-4">
           <Seal tone="brass" size={56} />

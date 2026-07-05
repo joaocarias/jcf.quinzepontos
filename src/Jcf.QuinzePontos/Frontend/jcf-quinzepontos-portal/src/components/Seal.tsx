@@ -1,9 +1,9 @@
 const TICK_COUNT = 15
 
 const TONE_STROKES: Record<'brass' | 'selo' | 'muted', string> = {
-  brass: '#C9A227',
-  selo: '#B0286F',
-  muted: 'rgba(242, 239, 234, 0.30)',
+  brass: 'var(--color-brass)',
+  selo: 'var(--color-selo)',
+  muted: 'var(--color-ink-stroke-muted)',
 }
 
 interface SealProps {

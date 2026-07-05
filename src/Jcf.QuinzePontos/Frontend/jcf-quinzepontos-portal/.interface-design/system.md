@@ -19,20 +19,38 @@ superfície (`canvas` → `surface` → `overlay`), nunca de `box-shadow`.
 
 ### Cores
 
-| Token | Valor | Uso |
-|---|---|---|
-| `canvas` | `#14121A` | fundo base da página |
-| `surface` | `#1B1822` | cards, painéis (nível 1) |
-| `overlay` | `#241F2D` | dropdowns, badges (nível 2) |
-| `control` | `#17141D` | fundo de inputs (mais "encaixado" que surface) |
-| `ink` / `ink-secondary` / `ink-tertiary` / `ink-muted` | branco quente em 94%/68%/46%/28% opacidade | hierarquia de texto (4 níveis, sempre usar os 4) |
-| `hairline` / `hairline-subtle` / `hairline-strong` | branco em 8%/5%/16% opacidade | bordas |
-| `selo` / `selo-ink` / `selo-soft` | `#B0286F` / `#8A1F57` / rgba 14% | magenta de marca — ações primárias, foco |
-| `brass` / `brass-dim` / `brass-soft` | `#C9A227` / `#8A701C` / rgba 14% | selo/distintivo "tier alto" (Admin) |
-| `danger` / `danger-soft` | `#E5484D` / rgba 12% | erros |
-| `success` / `success-soft` | `#4CAF7D` / rgba 12% | confirmações |
+Cada token do Tailwind aponta pra uma CSS custom property (`var(--color-x)`, definida em
+`src/index.css`), nunca um hex direto — é isso que permite trocar tema sem tocar nas classes.
 
-Nunca usar hex fora dessa lista — tudo mapeia pra esses tokens.
+| Token | Valor escuro (`:root`) | Valor claro (`:root.light`) | Uso |
+|---|---|---|---|
+| `canvas` | `#14121A` | `#F6F3ED` | fundo base da página |
+| `surface` | `#1B1822` | `#FFFFFF` | cards, painéis (nível 1) |
+| `overlay` | `#241F2D` | `#EEE9DE` | dropdowns, badges (nível 2) |
+| `control` | `#17141D` | `#F1ECE1` | fundo de inputs (mais "encaixado" que surface) |
+| `ink` / `ink-secondary` / `ink-tertiary` / `ink-muted` | branco quente em 94%/68%/46%/28% opacidade | preto quente (`#1A140C`) em 92%/66%/46%/28% opacidade | hierarquia de texto (4 níveis, sempre usar os 4) |
+| `hairline` / `hairline-subtle` / `hairline-strong` | branco em 8%/5%/16% opacidade | preto quente em 10%/6%/20% opacidade | bordas |
+| `selo` / `selo-ink` / `selo-soft` | `#B0286F` / `#8A1F57` / rgba 14% | mesmos valores (já tem contraste em ambos os fundos) | magenta de marca — ações primárias, foco |
+| `brass` / `brass-dim` / `brass-soft` | `#C9A227` / `#8A701C` / rgba 14% | `#8A6A10` / `#6B540F` / rgba 12% (dourado mais escuro — o tom claro não teria contraste como texto sobre fundo branco) | selo/distintivo "tier alto" (Admin) |
+| `danger` / `danger-soft` | `#E5484D` / rgba 12% | `#C53137` / rgba 10% | erros |
+| `success` / `success-soft` | `#4CAF7D` / rgba 12% | `#2F8F5E` / rgba 10% | confirmações |
+
+Nunca usar hex fora dessa lista — tudo mapeia pra esses tokens. Ao adicionar um token novo, sempre
+definir os dois valores (escuro e claro) em `src/index.css`, nunca só um.
+
+## Modo claro/escuro
+
+- **Mecanismo:** classe `light` na tag `<html>` (ausência da classe = escuro, que é o tema default
+  do produto). Ver `:root` vs `:root.light` em `src/index.css`.
+- **Persistência:** `localStorage["jcf-portal-theme"]`. Se não houver preferência salva, usa
+  `prefers-color-scheme` do sistema.
+- **Sem flash:** script inline em `index.html` (antes do CSS carregar) aplica a classe antes do
+  primeiro paint.
+- **Toggle:** componente `src/components/ThemeToggle.tsx` (ícone sol/lua), hook de estado em
+  `src/lib/theme.ts` (`useTheme()`). Presente no canto superior direito do login e na topbar do
+  dashboard, ao lado do `RoleBadge`.
+- Componentes fora do Tailwind (como o stroke do `Seal` em `tone="muted"`) também usam
+  `var(--color-x)` diretamente — nunca hardcodar cor ali.
 
 ### Tipografia
 

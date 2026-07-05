@@ -2,6 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-canvas: #14121A;
+  --color-surface: #1B1822;
+  --color-overlay: #241F2D;
+  --color-control: #17141D;
+
+  --color-ink: rgba(242, 239, 234, 0.94);
+  --color-ink-secondary: rgba(242, 239, 234, 0.68);
+  --color-ink-tertiary: rgba(242, 239, 234, 0.46);
+  --color-ink-muted: rgba(242, 239, 234, 0.28);
+  --color-ink-stroke-muted: rgba(242, 239, 234, 0.30);
+
+  --color-hairline: rgba(255, 255, 255, 0.08);
+  --color-hairline-subtle: rgba(255, 255, 255, 0.05);
+  --color-hairline-strong: rgba(255, 255, 255, 0.16);
+
+  --color-selo: #B0286F;
+  --color-selo-ink: #8A1F57;
+  --color-selo-soft: rgba(176, 40, 111, 0.14);
+
+  --color-brass: #C9A227;
+  --color-brass-dim: #8A701C;
+  --color-brass-soft: rgba(201, 162, 39, 0.14);
+
+  --color-danger: #E5484D;
+  --color-danger-soft: rgba(229, 72, 77, 0.12);
+
+  --color-success: #4CAF7D;
+  --color-success-soft: rgba(76, 175, 125, 0.12);
+
+  --color-scrollbar-thumb: #3A3444;
+}
+
+:root.light {
+  --color-canvas: #F6F3ED;
+  --color-surface: #FFFFFF;
+  --color-overlay: #EEE9DE;
+  --color-control: #F1ECE1;
+
+  --color-ink: rgba(26, 20, 12, 0.92);
+  --color-ink-secondary: rgba(26, 20, 12, 0.66);
+  --color-ink-tertiary: rgba(26, 20, 12, 0.46);
+  --color-ink-muted: rgba(26, 20, 12, 0.28);
+  --color-ink-stroke-muted: rgba(26, 20, 12, 0.30);
+
+  --color-hairline: rgba(20, 15, 10, 0.10);
+  --color-hairline-subtle: rgba(20, 15, 10, 0.06);
+  --color-hairline-strong: rgba(20, 15, 10, 0.20);
+
+  --color-selo: #B0286F;
+  --color-selo-ink: #8A1F57;
+  --color-selo-soft: rgba(176, 40, 111, 0.10);
+
+  --color-brass: #8A6A10;
+  --color-brass-dim: #6B540F;
+  --color-brass-soft: rgba(138, 106, 16, 0.12);
+
+  --color-danger: #C53137;
+  --color-danger-soft: rgba(197, 49, 55, 0.10);
+
+  --color-success: #2F8F5E;
+  --color-success-soft: rgba(47, 143, 94, 0.10);
+
+  --color-scrollbar-thumb: #D8D0BF;
+}
+
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
 
@@ -9,15 +75,16 @@
 
   body {
     margin: 0;
-    background: #14121A;
-    color: rgba(242, 239, 234, 0.94);
+    background: var(--color-canvas);
+    color: var(--color-ink);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #14121A; }
-  ::-webkit-scrollbar-thumb { background: #3A3444; border-radius: 3px; }
+  ::-webkit-scrollbar-track { background: var(--color-canvas); }
+  ::-webkit-scrollbar-thumb { background: var(--color-scrollbar-thumb); border-radius: 3px; }
 }
 
 @layer utilities {
