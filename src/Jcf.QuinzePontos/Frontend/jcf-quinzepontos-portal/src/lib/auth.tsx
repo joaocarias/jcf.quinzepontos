@@ -90,3 +90,14 @@ export function RequireAuth({ children }: { children: ReactNode }) {
 
   return children
 }
+
+export function RequireAdmin({ children }: { children: ReactNode }) {
+  const { session } = useAuth()
+  const isAdmin = session?.roles.includes('Admin') ?? false
+
+  if (!isAdmin) {
+    return <Navigate to="/" replace />
+  }
+
+  return children
+}
