@@ -46,6 +46,8 @@ services:
     build:
       context: ./src/Jcf.QuinzePontos/Frontend/jcf-quinzepontos-landingpage
       dockerfile: Dockerfile
+      args:
+        VITE_PORTAL_URL: "http://localhost:3001"
     ports:
       - "3000:80"
 

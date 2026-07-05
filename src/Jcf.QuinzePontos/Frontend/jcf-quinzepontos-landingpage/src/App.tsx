@@ -51,20 +51,6 @@ const FEATURES = [
     title: 'Histórico Completo',
     desc: 'Todos os concursos desde o início da Lotofácil armazenados em PostgreSQL — dezenas, rateios e ganhadores por estado.',
   },
-  {
-    color: C.purpleL,
-    bg: 'rgba(160,79,232,0.1)',
-    border: 'rgba(160,79,232,0.25)',
-    glow: 'rgba(160,79,232,0.15)',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-      </svg>
-    ),
-    title: 'API REST + Swagger',
-    desc: 'Endpoints documentados com OpenAPI/Swagger. Integre os resultados da Lotofácil em seus próprios projetos com facilidade.',
-  },
 ]
 
 const STATS = [
@@ -196,7 +182,7 @@ function Nav() {
 
         {/* links */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 32 }} className="hidden md:flex">
-          {['Início', 'Resultados', 'API', 'GitHub'].map(item => (
+          {['Início', 'Resultados', 'GitHub'].map(item => (
             <a key={item} href="#"
               style={{ color: C.muted, fontSize: 14, fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s' }}
               onMouseEnter={e => ((e.target as HTMLElement).style.color = '#fff')}
@@ -205,7 +191,7 @@ function Nav() {
               {item}
             </a>
           ))}
-          <a href="#" style={{
+          <a href={import.meta.env.VITE_PORTAL_URL} style={{
             background: `linear-gradient(135deg, ${C.purple}, #4A0898)`,
             color: '#fff', fontSize: 13, fontWeight: 700,
             padding: '9px 22px', borderRadius: 9, textDecoration: 'none',
@@ -213,7 +199,7 @@ function Nav() {
             boxShadow: '0 0 22px rgba(112,32,200,0.4)',
             transition: 'box-shadow 0.2s',
           }}>
-            Ver Swagger →
+            Login →
           </a>
         </div>
       </div>
@@ -268,7 +254,7 @@ function Hero() {
 
             <p style={{ color: '#9870C0', fontSize: 17, lineHeight: 1.75, maxWidth: 480, marginBottom: 40 }}>
               Acompanhe todos os resultados da <strong style={{ color: '#fff' }}>Lotofácil</strong> em tempo real.
-              Histórico completo desde o primeiro concurso, com API REST documentada e
+              Histórico completo desde o primeiro concurso, com
               atualização automática a cada minuto.
             </p>
 
@@ -281,13 +267,6 @@ function Hero() {
                 boxShadow: '0 0 32px rgba(112,32,200,0.45)',
               }}>
                 Ver Resultados →
-              </a>
-              <a href="#" style={{
-                background: 'transparent', color: C.lavender, fontSize: 16, fontWeight: 600,
-                padding: '14px 30px', borderRadius: 10, textDecoration: 'none',
-                border: `1px solid rgba(160,79,232,0.35)`,
-              }}>
-                Documentação API
               </a>
             </div>
           </div>
@@ -381,11 +360,11 @@ function Features() {
             }}>PRECISA</span>
           </h2>
           <p style={{ color: C.muted, maxWidth: 480, margin: '0 auto', lineHeight: 1.75, fontSize: 16 }}>
-            Uma plataforma completa para acompanhar, analisar e integrar os dados da Lotofácil em seus projetos.
+            Uma plataforma completa para acompanhar e analisar os dados da Lotofácil.
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }} className="md:grid-cols-3 grid-cols-1">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24, maxWidth: 800, margin: '0 auto' }} className="md:grid-cols-2 grid-cols-1">
           {FEATURES.map((f, i) => (
             <div key={i}
               style={{
@@ -505,7 +484,7 @@ function CTA() {
               }}>AGORA</span>
             </h2>
             <p style={{ color: '#9070B8', maxWidth: 420, margin: '0 auto 36px', lineHeight: 1.75, fontSize: 16 }}>
-              Acesse a API REST documentada com Swagger e integre os dados da Lotofácil nos seus projetos gratuitamente.
+              Acompanhe os resultados da Lotofácil com histórico completo e atualização automática, gratuitamente.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'center' }}>
               <a href="#" style={{
@@ -514,7 +493,7 @@ function CTA() {
                 padding: '15px 38px', borderRadius: 11, textDecoration: 'none',
                 boxShadow: '0 0 32px rgba(255,215,0,0.4)',
               }}>
-                Acessar Swagger →
+                Ver Resultados →
               </a>
               <a href="#" style={{
                 background: 'transparent', color: C.lavender, fontSize: 16, fontWeight: 600,
